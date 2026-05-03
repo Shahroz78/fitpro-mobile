@@ -4,18 +4,37 @@
     "slug": "fitpro-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
     "splash": {
-      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#0F2027"
     },
-    "ios": { "supportsTablet": false, "bundleIdentifier": "com.fitpro.mobile" },
-    "android": {
-      "adaptiveIcon": { "foregroundImage": "./assets/adaptive-icon.png", "backgroundColor": "#0F2027" },
-      "package": "com.fitpro.mobile"
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.fitpro.mobile"
     },
-    "plugins": ["expo-font"]
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#0F2027"
+      },
+      "package": "com.fitpro.mobile",
+      "permissions": []
+    },
+    "plugins": [
+      "expo-font",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#0F2027",
+          "resizeMode": "contain"
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "53cb5854-56c1-4ab4-b0ea-9e2991746d39"
+      }
+    },
+    "owner": "shahroz280"
   }
 }
