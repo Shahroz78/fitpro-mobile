@@ -22,18 +22,22 @@ import LogActivityScreen   from '../screens/Main/LogActivityScreen';
 import ProgressScreen      from '../screens/Main/ProgressScreen';
 import ProfileScreen       from '../screens/Main/ProfileScreen';
 
+// New feature screens
+import ActiveWorkoutScreen   from '../screens/Main/ActiveWorkoutScreen';
+import FitnessSettingsScreen from '../screens/Main/FitnessSettingsScreen';
+import StatsScreen           from '../screens/Main/StatsScreen';
+
 const Stack = createNativeStackNavigator();
 const Tab   = createBottomTabNavigator();
 
 const TAB_ICONS = {
-  Home:      ['home',       'home-outline'      ],
-  Workouts:  ['barbell',    'barbell-outline'   ],
-  Log:       ['add-circle', 'add-circle-outline'],
-  Progress:  ['trending-up','trending-up-outline'],
-  Profile:   ['person',     'person-outline'    ],
+  Home:      ['home',        'home-outline'       ],
+  Workouts:  ['barbell',     'barbell-outline'    ],
+  Log:       ['add-circle',  'add-circle-outline' ],
+  Progress:  ['trending-up', 'trending-up-outline'],
+  Profile:   ['person',      'person-outline'     ],
 };
 
-/* ── Bottom Tab Bar ─────────────────────────────── */
 function MainTabs() {
   return (
     <Tab.Navigator
@@ -69,7 +73,6 @@ function MainTabs() {
   );
 }
 
-/* ── Auth Stack (not logged in) ─────────────────── */
 function AuthStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -81,23 +84,25 @@ function AuthStack() {
   );
 }
 
-/* ── App Stack (logged in) ──────────────────────── */
 function AppStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {/* Onboarding is the first screen after register so new users
-          complete their goals before reaching the main tabs */}
-      <Stack.Screen name="Onboarding"    component={OnboardingScreen} />
-      <Stack.Screen name="Main"          component={MainTabs} />
-      <Stack.Screen name="WorkoutDetail" component={WorkoutDetailScreen}
+      <Stack.Screen name="Onboarding"      component={OnboardingScreen} />
+      <Stack.Screen name="Main"            component={MainTabs} />
+      <Stack.Screen name="WorkoutDetail"   component={WorkoutDetailScreen}
         options={{ presentation: 'modal', animation: 'slide_from_bottom' }} />
+      <Stack.Screen name="ActiveWorkout"   component={ActiveWorkoutScreen}
+        options={{ animation: 'slide_from_right', gestureEnabled: false }} />
+      <Stack.Screen name="Stats"           component={StatsScreen}
+        options={{ animation: 'slide_from_right' }} />
+      <Stack.Screen name="FitnessSettings" component={FitnessSettingsScreen}
+        options={{ animation: 'slide_from_right' }} />
     </Stack.Navigator>
   );
 }
 
-/* ── Root Navigator ─────────────────────────────── */
 export default function AppNavigation() {
-  const { isAuthenticated, loading, user } = useAuth();
+  const { isAuthenticated, loading } = useAuth();
 
   if (loading) {
     return (

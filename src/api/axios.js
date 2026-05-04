@@ -11,7 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // Android emulator only:
 // const BASE_URL = 'http://10.0.2.2:5000/api';
 
-const BASE_URL = 'http://192.168.1.11:5000/api'; // ← change this to your IP
+const BASE_URL = 'http://192.168.1.108:5000/api'; // ← change this to your IP
 
 const api = axios.create({
   baseURL: BASE_URL,
